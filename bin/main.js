@@ -1,6 +1,9 @@
+#! /usr/bin/env node
+
 'use strict';
 
 const fs = require("fs");
+const os = require("os");
 const path = require("path");
 const util = require("util");
 const axios = require("axios");
@@ -27,7 +30,7 @@ const patterns = {
 
 yargs
 	.usage("Syntax: $0 <command> [options]")
-	.command("check <url>", "Check a URL", (yargs) => {
+	.command("* <url>", "Check a URL", (yargs) => {
 		return yargs.option('interactive', {
 			type: 'string',
 			description: 'The URL to scan for an AppSync GraphQL endpoint.'
@@ -149,7 +152,12 @@ function retrieveSimpleValue(page, pattern, question, none_message) {
 }
 
 async function getGqlSchema(endpoint, headers, creds) {
-	const cache_file = path.join(process.cwd(), "results", `${hash(endpoint)}.json`);
+	const cache_dir = path.join(os.homedir(), ".countersync");
+	const cache_file = path.join(cache_dir, `${hash(endpoint)}.json`);
+
+	if (!fs.existsSync(cache_dir)) {
+		fs.mkdirSync(cache_dir);
+	}
 
 	let schema;
 	const client = axios.create();

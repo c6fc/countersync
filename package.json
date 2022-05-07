@@ -1,0 +1,20 @@
+{
+  "name": "appsync-gql-inspector",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@colors/colors": "^1.5.0",
+    "aws-sdk": "^2.1129.0",
+    "aws4-axios": "^2.4.9",
+    "axios": "^0.27.2",
+    "gql-query-builder": "^3.6.0",
+    "inquirer": "^8.2.4",
+    "yargs": "^17.4.1"
+  }
+}
